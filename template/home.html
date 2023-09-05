@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Uploader</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="py-5 text-center bg-secondary text-white">
+            <h1 class="mb-4">Image Uploader</h1>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn btn-danger">Upload</button>
+            </form>
+        </header>
+
+        <!-- Image Gallery Section -->
+        <section class="mt-5">
+            <div class="row">
+                {% for x in image %}
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="{{ x.photo.url }}" alt="" class="card-img-top" style="max-height: 200px;">
+                            <div class="card-footer text-muted">
+                                Uploaded on {{ x.date }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
